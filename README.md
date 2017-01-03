@@ -18,3 +18,7 @@
 *Unsorted link list*
 
 * https://blog.codecentric.de/2017/01/topic-modeling-codecentric-blog-articles/
+
+*License*
+
+Code is licensed under [GPLv3](https://github.com/BastiTee/bonnerblogs-analysis/blob/master/LICENSE)
