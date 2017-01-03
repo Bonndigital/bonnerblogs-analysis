@@ -1,4 +1,5 @@
 # bonnerblogs-analysis
+> A data analysis sandbox for bonnerblogs.de content
 
 *Things to do*
 
