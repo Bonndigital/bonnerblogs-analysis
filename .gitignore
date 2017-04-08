@@ -1,3 +1,7 @@
-bonndigital*sql*
-_sanity/
-_full_parse/
+*bonndigital*
+_*/
+_*
+_robota*
+_bptbx*
+get-pip.py
+nltk-data/
