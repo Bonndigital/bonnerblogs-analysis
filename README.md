@@ -23,4 +23,4 @@ Work in progress. No guarantee for interface stability.
 
 You need to contact [Sascha Foerster](https://github.com/saschafoerster) in order to obtain a copy of the input SQL dump.
 
-Code is licensed under [GPLv3](https://github.com/BastiTee/bonnerblogs-analysis/blob/master/LICENSE)
+Code is licensed under [GPLv3](https://github.com/bonnerblogs-analysis/bonnerblogs-analysis/blob/master/LICENSE)
