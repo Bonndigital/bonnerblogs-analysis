@@ -90,7 +90,7 @@ echo "-- size of collection '$ifile': $size"
 [ ! -f "$stat_dir/date_det.txt" ] && {
     mkdir -p "$stat_dir"
     ${PY} -m robota_scripts.extract_pubdate_from_html -i "$html_dir" \
-    -c ${ifile} -o "$stat_dir/date_det.txt" -t1
+    -c ${ifile} -o "$stat_dir/date_det.txt"
 } || {
     echo "-- skipped date detection. file $stat_dir/date_det.txt present."
 }
