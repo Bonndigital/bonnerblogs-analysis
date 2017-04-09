@@ -17,20 +17,21 @@ epoch = r_date_extractor.get_current_epoch()
 r_util.log('Current timestamp: {}'.format(epoch))
 
 r_util.log('Read mongodb data..')
+# QUERY ----------
+q = {r_const.DB_DATE_EP: {'$ne': None}}
+# ----------------
 dates = r_mongo.get_values_from_field_as_list(
-    col, {r_const.DB_DATE_EP: {'$ne': None}},
-    [r_const.DB_DATE_EP],
-    cast=lambda x: int(x))
+    col, q, [r_const.DB_DATE_EP], cast=lambda x: int(x))
 
 
 r_util.log('Preprocess data..')
 df = pd.Series(dates)
 df.sort_values(inplace=True)
-r_stats.print_pandas_dataframe(df)
 df = df[abs(stats.zscore(df)) < 2]  # filter outlier
 df = pd.to_datetime(df, unit='s')
 df = df.apply(
     lambda df: datetime(year=df.year, month=df.month, day=df.day))
+r_stats.print_pandas_dataframe(df)
 
 r_util.log('Prepare plots..')
 sns.despine()
@@ -50,3 +51,5 @@ plt.ylabel('Anzahl Blogeinträge')
 plt.title('Häufigkeitsverteilung des Veröffentlichungsdatums über Jahre')
 plt.grid(True)
 plt.show()
+
+print(df.groupby(df.dt.month).count())
