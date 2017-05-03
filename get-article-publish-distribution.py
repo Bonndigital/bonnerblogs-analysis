@@ -3,9 +3,10 @@
 """TBD."""
 
 from collections import Counter
-from robota import r_mongo, r_util, r_const, r_cmdprs
+from robota import r_mongo, r_const, r_cmdprs
 from bptbx import b_date
 import json
+from re import sub
 
 # setup command line parsing --------------------------------------------------
 prs = r_cmdprs.init()
@@ -16,14 +17,17 @@ col = r_cmdprs.check_mongo_collection(prs, args, True)
 # get top 25 blogs
 results = r_mongo.consolidate_mongo_key(col, r_const.DB_SOURCE_COLL)
 top_blogs = {}
-for tuple in results['counter'].most_common(25):
+for tuple in results['counter'].most_common(50):
     top_blogs[tuple[0]] = {}
     top_blogs[tuple[0]]['total_art'] = tuple[1]
 
-# get publish dates
+
+def _if_filter(x): return x is not None and x >= 1388530800  # 01.01.2014
+
+
 for blog in top_blogs.keys():
     results = r_mongo.consolidate_mongo_key(
-        col, r_const.DB_DATE_EP,
+        col, r_const.DB_DATE_EP, if_filter=_if_filter,
         query={"__src_collection": {"$eq": blog}})
     top_blogs[blog]['timestamps'] = results['resultset']
     top_blogs[blog]['with_date'] = results['resultset_stats']['len']
@@ -34,13 +38,14 @@ top_blogs_sel = {}
 # drop some candidates
 for blog in top_blogs.keys():
     cblog = top_blogs[blog]
-    if (int(cblog['with_date'] > 500) and
+    if (int(cblog['with_date'] > 300) and
             float(cblog['date_perc']) >= 0.8):
         top_blogs_sel[blog] = cblog
     else:
         from sys import stderr
         print('{} skipped [tot={} wdate={} perc={}]'.format(
-            blog, cblog['total_art'], cblog['with_date'], cblog['date_perc']), file=stderr)
+            blog, cblog['total_art'], cblog['with_date'],
+            cblog['date_perc']), file=stderr)
 
 # create date-histograms
 for blog in top_blogs_sel.keys():
@@ -54,7 +59,7 @@ result_data = []
 for blog in top_blogs_sel.keys():
     dataset = {}
     dataset['total'] = top_blogs[blog]['total_art']
-    dataset['name'] = blog
+    dataset['name'] = sub('&amp;', '&', blog)
     ts = []
     for key in top_blogs[blog]['timestamps']:
         if "2017" in key:  # skip current year
