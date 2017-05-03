@@ -17,6 +17,8 @@ Run `./install.sh`. This will (help you to) set up...
 
 Afterwards you can experiment with the remaining scripts. I'll try to make sure that `run-workflow.sh` will always implement the most recent processing chain for the bonnerblogs dataset.
 
+You are **very welcome** to give feedback, code, pull requests, ideas and whatnot :)
+
 # License and disclaimer
 
 Work in progress. No guarantee for interface stability.

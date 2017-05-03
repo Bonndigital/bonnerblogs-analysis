@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Histograms."""
+"""Some basic graphic rendering done with seaborn."""
 
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -12,11 +12,14 @@ from sys import path as spath
 if True:
     chdir(path.dirname(__file__))
     spath.insert(0, '_robota_install')
-    from robota import r_mongo, r_const, r_util, r_date_extractor, r_stats
+    from robota import (r_util, r_mongo, r_const, r_cmdprs,
+                        r_date_extractor, r_stats)
 
-
-r_util.log('Setup mongo access..')
-col = r_mongo.get_client_for_collection('bonndigital_2017-04-06.full')
+# setup command line parsing --------------------------------------------------
+prs = r_cmdprs.init()
+r_cmdprs.add_mongo_collection(prs)
+args = prs.parse_args()
+col = r_cmdprs.check_mongo_collection(prs, args, True)
 
 
 def _basic_plot(df_plot, xaxis, yaxis, title):
