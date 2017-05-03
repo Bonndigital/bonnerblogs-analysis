@@ -24,7 +24,7 @@ for result in results['resultset']:
     result = result.strftime("%Y-%m-%d")
     dates.append(result)
 
-dates = r_math.count_and_sort(dates, remove_outliers=True)
+dates = r_math.count_and_sort(dates, reject_outliers=True, outliers_m=2)
 print('date,close')
 for date in dates:
     print('{},{}'.format(date[0], date[1]))
