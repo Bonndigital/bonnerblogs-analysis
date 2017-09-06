@@ -7,13 +7,14 @@ from sys import path as spath
 if True:
     chdir(path.dirname(__file__))
     spath.insert(0, '_robota_install')
-    from robota import r_util, r_mongo, r_const, r_cmdprs
+    from robota import r_util, r_mongo, r_const
+    from bptbx import b_cmdprs
 
 # setup command line parsing --------------------------------------------------
-prs = r_cmdprs.init()
-r_cmdprs.add_mongo_collection(prs)
+prs = b_cmdprs.init()
+b_cmdprs.add_mongo_collection(prs)
 args = prs.parse_args()
-col = r_cmdprs.check_mongo_collection(prs, args, True)
+col = b_cmdprs.check_mongo_collection(prs, args, True)
 
 # run analysis ----------------------------------------------------------------
 

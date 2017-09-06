@@ -10,13 +10,14 @@ from re import sub
 if True:
     chdir(path.dirname(__file__))
     spath.insert(0, '_robota_install')
-    from robota import r_mongo, r_const, r_cmdprs, r_util
+    from robota import r_mongo, r_const, r_util
+    from bptbx import b_cmdprs
 
 # setup command line parsing
-prs = r_cmdprs.init()
-r_cmdprs.add_file_in(prs)
+prs = b_cmdprs.init()
+b_cmdprs.add_file_in(prs)
 args = prs.parse_args()
-r_cmdprs.check_file_in(prs, args)
+b_cmdprs.check_file_in(prs, args)
 
 # setup mongodb connection
 bname = b_iotools.basename(args.i, '.csv')

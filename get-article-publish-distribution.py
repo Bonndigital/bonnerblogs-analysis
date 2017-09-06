@@ -3,16 +3,16 @@
 """TBD."""
 
 from collections import Counter
-from robota import r_mongo, r_const, r_cmdprs
-from bptbx import b_date
+from robota import r_mongo, r_const
+from bptbx import b_date, b_cmdprs
 import json
 from re import sub
 
 # setup command line parsing --------------------------------------------------
-prs = r_cmdprs.init()
-r_cmdprs.add_mongo_collection(prs)
+prs = b_cmdprs.init()
+b_cmdprs.add_mongo_collection(prs)
 args = prs.parse_args()
-col = r_cmdprs.check_mongo_collection(prs, args, True)
+col = b_cmdprs.check_mongo_collection(prs, args, True)
 
 # get top 25 blogs
 results = r_mongo.consolidate_mongo_key(col, r_const.DB_SOURCE_COLL)
