@@ -17,7 +17,7 @@ if True:
 prs = b_cmdprs.init()
 b_cmdprs.add_file_in(prs)
 args = prs.parse_args()
-b_cmdprs.check_file_in(prs, args)
+b_cmdprs.check_file_in(prs, args.i)
 
 # setup mongodb connection
 bname = b_iotools.basename(args.i, '.csv')
