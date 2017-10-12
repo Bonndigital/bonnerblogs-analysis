@@ -5,15 +5,9 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-from datetime import datetime
 import pandas as pd
-from os import chdir, path
-from sys import path as spath
-if True:
-    chdir(path.dirname(__file__))
-    spath.insert(0, '_robota_install')
-    from robota import r_util, r_mongo, r_const, r_date_extractor, r_stats
-    from bptbx import b_cmdprs
+from robota import r_mongo, r_const, r_date_extractor
+from bptbx import b_cmdprs
 
 # setup command line parsing --------------------------------------------------
 prs = b_cmdprs.init()

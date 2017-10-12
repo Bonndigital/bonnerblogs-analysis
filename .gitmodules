@@ -1,0 +1,6 @@
+[submodule "robota"]
+	path = robota
+	url = git@github.com:BastiTee/robota.git
+[submodule "bastis-python-toolbox"]
+	path = bastis-python-toolbox
+	url = git@github.com:BastiTee/bastis-python-toolbox.git

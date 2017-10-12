@@ -1,11 +1,10 @@
 #!/bin/bash
 
 cd "$( dirname "$( readlink -f "$0" )" )"
-source "_robota_install/dev-tools/base.sh"
-
+source robota/dev-tools/base.sh
 PY=$( get_python_com )
 stdoutlog "-- PYTHONVERSION: $( $PY --version )"
-export PYTHONPATH="_robota_install":${PYTHONPATH}
+export PYTHONPATH=robota:bastis-python-toolbox:${PYTHONPATH}
 stdoutlog "-- PYTHONPATH: $PYTHONPATH"
 
 function show_help () {

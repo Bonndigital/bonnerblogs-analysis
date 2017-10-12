@@ -22,7 +22,8 @@ for tuple in results['counter'].most_common(50):
     top_blogs[tuple[0]]['total_art'] = tuple[1]
 
 
-def _if_filter(x): return x is not None and x >= 1388530800  # 01.01.2014
+def _if_filter(x):
+    return x is not None and x >= 1388530800  # 01.01.2014
 
 
 for blog in top_blogs.keys():

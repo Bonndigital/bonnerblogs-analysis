@@ -2,16 +2,11 @@
 # -*- coding: utf-8 -*-
 """Read CSV file and write content to MongoDB."""
 
-from os import chdir, path
-from sys import path as spath
 import csv
 from bptbx import b_iotools
 from re import sub
-if True:
-    chdir(path.dirname(__file__))
-    spath.insert(0, '_robota_install')
-    from robota import r_mongo, r_const, r_util
-    from bptbx import b_cmdprs
+from robota import r_mongo, r_const, r_util
+from bptbx import b_cmdprs
 
 # setup command line parsing
 prs = b_cmdprs.init()
