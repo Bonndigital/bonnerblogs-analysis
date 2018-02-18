@@ -2,7 +2,7 @@
 
 cd "$( dirname "$( readlink -f "$0" )" )"
 git submodule init
-git submodule update --remote
+git submodule update
 chmod a+x robota/dev-tools/install.sh
 robota/dev-tools/install.sh
 source robota/dev-tools/base.sh
